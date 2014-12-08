@@ -17,7 +17,7 @@ Get all current posts on Transmoto.
 ### List Posts [GET]
 + Parameters
     + page (optional,integer) ... Select which page of posts you should get. This functions exactly like the website's pagination. The most current posts will be on page 1. 
-    + filter%5Bposts_per_page%5D (optional,string) ... The number of posts to retreive. By default this is 16.
+    + filter%5Bposts_per_page%5D (optional,integer) ... The number of posts to retreive. By default this is 16.
 
 + Response 200 (application/json)
 
@@ -32,25 +32,24 @@ There are two main attributes you will use to select the correct posts:
 * `filter[category_name]`
 * `page_id`
 
-Valid category names include:
-
-* news
-* video-galleries
-* features
-* bikes-features
-* interviews
-* products-features
-* weekly-features
-* fmx-insider
-* mxgp-insider
-* nz-insider
-* throwdown-weekly-features
-* usa-insider
-
 + Parameters
-    + filter%5Bcategory_name%5D (string) ... The name of the category you wish to select. You can pass multiple categories using a comma `,`
+    + filter%5Bcategory_name%5D (string)
+        The name of the category you wish to select. You can pass multiple categories using a comma `,`
+            + Values
+                + news
+                + video-galleries
+                + features
+                + bikes-features
+                + interviews
+                + products-features
+                + weekly-features
+                + fmx-insider
+                + mxgp-insider
+                + nz-insider
+                + throwdown-weekly-features
+                + usa-insider
     + page (optional,integer) ... Select which page of posts you should get. This functions exactly like the website's pagination. The most current posts will be on page 1. 
-    + filter%5Bposts_per_page%5D (optional,string) ... The number of posts to retreive. By default this is 16.
+    + filter%5Bposts_per_page%5D (optional,integer) ... The number of posts to retreive. By default this is 16.
 
 ### Get Posts [GET]
 + Response 200 (application/json)
