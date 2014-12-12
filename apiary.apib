@@ -98,7 +98,7 @@ Get all current Trader Ads on Transmoto.
 
 ## Retrive Dealer Ads [/trader/dealer/{?filter%5Bads_per_page%5D,page}]
 
-Get all current dealer ads on Transmoto. 
+Get all current **dealer** ads on Transmoto. 
 
 ### List Ads [GET]
 + Parameters
@@ -108,6 +108,23 @@ Get all current dealer ads on Transmoto.
 + Response 200 (application/json)
         
         [{"ad_id":"236","ad_title":"2012 TRIUMPH TIGER 800","ad_details":"*** LOCATED AT KTM NEWCASTL, NSW ***\r\n\r\n- WE ARE AUSTRALIAS NUMBER 1 OVERALL KTM DEALER -\r\n\r\n- GREAT CONDITION\r\n- REGULAR SERVICE HISTORY\r\n- SW MOTEC CENTRE STAND\r\n- SW MOTEC CRASHBARS\r\n- SW MOTEC PANNIER FRAMES\r\n- SW MOTEC BASHPLATE\r\n- GIVI TOURING SCREEN\r\n- MICHELIN PILOT ROAD 3 TYRES (85%)\r\n\r\n\r\n*** EASY FINANCE OPTIONS AVAILABLE ***","ad_contact_name":"KTM Newcastle","ad_contact_phone":"02 4037 3333","ad_contact_email":"myles@ktmnewcastle.com.au","ad_postdate":"2014-11-24","ad_last_updated":"2014-11-24","listing_type":"Dealer","is_featured_ad":"1","bike_type":"Dual\/Adventure","currently_registered":"Yes","make":"Triumph","model":"TIGER 800","manufacture_year":"2012","odometer_run_time":"31552KM","postcode":"2292","poa":"0","category_name":"Bikes"},{"ad_id":"235","ad_title":"2012 KTM 250EXC-F ","ad_details":"*** LOCATED AT KTM NEWCASTLE, NSW***\r\n\r\n- WE ARE AUSTRALIA&#039;S NUMBER 1 OVERALL KTM DEALER - \r\n\r\n- APPROX 40 HOURS\r\n- REGO UNTIL 16\/9\/15\r\n- NEW GRIPS\r\n- NEW HAND GUARDS\r\n- NEW CHAIN + SPROCKETS\r\n- NEW COMPLETE WHEEL SET WITH TYRES AND TUBES\r\n- STD EXHAUST, BARELY USED\r\n- 287 KMS ON SPEEDO, BUT SPEEDO WAS REPLACED AFTER ROUGHLY 32 HOURS DUE TO ACCIDENT.\r\n- BASH PLATE\r\n- FRAME GUARDS\r\n- SHOWROOM CONDITION\r\n\r\n*** EASY FINANCE OPTIONS AVAILABLE ***","ad_contact_name":"KTM Newcastle","ad_contact_phone":"0240373333","ad_contact_email":"myles@ktmnewcastle.com.au","ad_postdate":"2014-11-24","ad_last_updated":"2014-11-24","listing_type":"Dealer","is_featured_ad":"1","bike_type":"Enduro\/Trail","currently_registered":"Yes","make":"KTM","model":"250EXC-F","manufacture_year":"2012","odometer_run_time":"40 HOURS","postcode":"2292","poa":"0","category_name":"Bikes"}]
+
++ Response 503 (application/json)
+        
+        [{"code":"json_trader_disabled","message":"Sorry, the Transmoto Trader is currently offline."}]
+
+## Retrive Private Ads [/trader/private/{?filter%5Bads_per_page%5D,page}]
+
+Get all current **private** ads on Transmoto. 
+
+### List Ads [GET]
++ Parameters
+    + page (optional,integer) ... Select which page of ads you should get. This functions exactly like the website's pagination. The most current ads will be on page 1. 
+    + ads_per_page (optional,integer) ... The number of ads to retreive. By default this is 16.
+
++ Response 200 (application/json)
+        
+        [{"ad_id":"234","ad_title":"Husqvarna FC 250 2014","ad_details":"Husqvarna FC 250 2014, immaculate condition it has 30 hours on it. Has new chain and sprockets, new tyres front and rear, new brake pads. Used as a second practise bike and parts and raced one race. Call me for any other info you will not be disappointed.  ","ad_contact_name":"lachlan stanford","ad_contact_phone":"0412239917","ad_contact_email":"lachlan.stanford28@gmail.com","ad_postdate":"2014-11-19","ad_last_updated":"2014-11-19","listing_type":"Private","is_featured_ad":"0","bike_type":"Motocross","currently_registered":"No","make":"Husqvarna","model":"FC","manufacture_year":"2014","odometer_run_time":"30","postcode":"2481","poa":"0","category_name":"Bikes"},{"ad_id":"233","ad_title":"TC250 HUSKY FOR SALE","ad_details":"One owner, good condition didn&#039;t get to  ride such, didn&#039;t have the time. \r\nLooking for a home that will appreciate her!","ad_contact_name":"Noela Matthews","ad_contact_phone":"0419753200","ad_contact_email":"noela@colorstudio.com.au","ad_postdate":"2014-11-18","ad_last_updated":"2014-11-18","listing_type":"Private","is_featured_ad":"1","bike_type":"Motocross","currently_registered":"No","make":"Husqvarna","model":"TC250","manufacture_year":"2010","postcode":"4880","poa":"0","category_name":"Bikes"}]
 
 + Response 503 (application/json)
         
