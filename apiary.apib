@@ -130,3 +130,19 @@ Get all current **private** ads on Transmoto.
         
         [{"code":"json_trader_disabled","message":"Sorry, the Transmoto Trader is currently offline."}]
 
+## Retrive Individual Ads [/trader/private/{id}]
+
+Pull ad details which matches the the ID passed.
+
+### List Ads [GET]
++ Parameters
+    + id (integer) ... The ad ID you want to retreive information from.
+
++ Response 200 (application/json)
+        
+        [{"ad_id":"236","ad_title":"2012 TRIUMPH TIGER 800","ad_details":"*** LOCATED AT KTM NEWCASTL, NSW ***\r\n\r\n- WE ARE AUSTRALIAS NUMBER 1 OVERALL KTM DEALER -\r\n\r\n- GREAT CONDITION\r\n- REGULAR SERVICE HISTORY\r\n- SW MOTEC CENTRE STAND\r\n- SW MOTEC CRASHBARS\r\n- SW MOTEC PANNIER FRAMES\r\n- SW MOTEC BASHPLATE\r\n- GIVI TOURING SCREEN\r\n- MICHELIN PILOT ROAD 3 TYRES (85%)\r\n\r\n\r\n*** EASY FINANCE OPTIONS AVAILABLE ***","ad_contact_name":"KTM Newcastle","ad_contact_phone":"02 4037 3333","ad_contact_email":"myles@ktmnewcastle.com.au","ad_postdate":"2014-11-24","ad_last_updated":"2014-11-24","listing_type":"Dealer","is_featured_ad":"1","bike_type":"Dual\/Adventure","currently_registered":"Yes","make":"Triumph","model":"TIGER 800","manufacture_year":"2012","odometer_run_time":"31552KM","postcode":"2292","poa":"0","category_name":"Bikes"}]
+
++ Response 503 (application/json)
+        
+        [{"code":"json_trader_disabled","message":"Sorry, the Transmoto Trader is currently offline."}]
+
