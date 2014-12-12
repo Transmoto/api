@@ -292,6 +292,38 @@ Return Trader ads that match the search criteria.
 + Response 400 (application/json)
 
         [{"code":"json_invalid_trader_search","message":"Invalid 's'. Must be blank or be three characters or greater"}]
+        
++ Response 400 (application/json)
+
+        [{"code":"json_invalid_trader_search","message":"Invalid min_price. Make sure your price contains numbers only (without currency symbols)"}]
+        
++ Response 400 (application/json)
+
+        [{"code":"json_invalid_trader_search","message":"Invalid max_price. Make sure your price contains numbers only (without currency symbols)"}]
+        
++ Response 400 (application/json)
+
+        [{"code":"json_invalid_trader_search","message":"Invalid 'type' passed. Valid types include: ..."}]
+        
++ Response 400 (application/json)
+
+        [{"code":"json_invalid_trader_search","message":"Invalid bike_type passed. Valid types include: ..."}]
+        
++ Response 400 (application/json)
+
+        [{"code":"json_invalid_trader_search","message":"Invalid bike_make passed. Valid types include: ..."}]
+        
++ Response 400 (application/json)
+
+        [{"code":"json_invalid_trader_search","message":"Invalid bike_manufacture_year. Ensure a valid 4-digit year."}]
+        
++ Response 400 (application/json)
+
+        [{"code":"json_invalid_trader_search","message":"Invalid bike_registered passed. Valid types include: ..."}]
+        
++ Response 400 (application/json)
+
+        [{"code":"json_invalid_trader_search","message":"Invalid acc_condition. Valid types include: ..."}]
 
 + Response 503 (application/json)
         
