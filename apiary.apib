@@ -10,7 +10,7 @@ The Transmoto Posts API can be used to get posts from the website. You can get a
 
 **Note:** Posts will only be returned 16 items at a time. Use the `page` attribute to get the next batch of posts. Use the `posts_per_page` attribute to change the number of posts returned.
 
-## Retrive All Posts [/posts/?filter[category__not_in][]=103&filter[category__not_in][]=104&filter[category__not_in][]=105&filter[category__not_in][]=106&filter[posts_per_page]={posts_per_page}&page={page}]
+## Retrive All Posts [/posts/?filter[category__not_in][]=103&filter[category__not_in][]=104&filter[category__not_in][]=105&filter[category__not_in][]=106&filter[posts_per_page]={posts_per_page}&page={page}&s={search}]
 
 Get all current posts on Transmoto. 
 
@@ -18,6 +18,7 @@ Get all current posts on Transmoto.
 + Parameters
     + page (optional,integer) ... Select which page of posts you should get. This functions exactly like the website's pagination. The most current posts will be on page 1. 
     + posts_per_page (optional,integer) ... The number of posts to retreive. By default this is 16.
+    + search (optional, string) ... Does a full text search of posts and returns only those that match the search parameter.
 
 + Response 200 (application/json)
 
