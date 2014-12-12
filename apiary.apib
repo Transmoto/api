@@ -206,8 +206,8 @@ Return Trader ads that match the search criteria.
         The category we should search in.
 
         + Values
-            + Bike
-            + Accessories
+            + `Bike`
+            + `Accessories`
             
     + filter%5Bprice_min%5D (optional,integer) ... Search based on the minimum price an ad should be
     + filter%5Bprice_max%5D (optional,integer) ... Search based on the maximum price an ad should be
@@ -289,10 +289,6 @@ Return Trader ads that match the search criteria.
             + `Brand New`
     
 
-
-
-    
-
 + Response 200 (application/json)
         
         [{"ad_id":"236","ad_title":"2012 TRIUMPH TIGER 800","ad_details":"*** LOCATED AT KTM NEWCASTL, NSW ***\r\n\r\n- WE ARE AUSTRALIAS NUMBER 1 OVERALL KTM DEALER -\r\n\r\n- GREAT CONDITION\r\n- REGULAR SERVICE HISTORY\r\n- SW MOTEC CENTRE STAND\r\n- SW MOTEC CRASHBARS\r\n- SW MOTEC PANNIER FRAMES\r\n- SW MOTEC BASHPLATE\r\n- GIVI TOURING SCREEN\r\n- MICHELIN PILOT ROAD 3 TYRES (85%)\r\n\r\n\r\n*** EASY FINANCE OPTIONS AVAILABLE ***","ad_contact_name":"KTM Newcastle","ad_contact_phone":"02 4037 3333","ad_contact_email":"myles@ktmnewcastle.com.au","ad_postdate":"2014-11-24","ad_last_updated":"2014-11-24","listing_type":"Dealer","is_featured_ad":"1","bike_type":"Dual\/Adventure","currently_registered":"Yes","make":"Triumph","model":"TIGER 800","manufacture_year":"2012","odometer_run_time":"31552KM","postcode":"2292","poa":"0","category_name":"Bikes"}]
@@ -303,7 +299,7 @@ Return Trader ads that match the search criteria.
    
  + Response 400 (application/json)
 
-        [{"code":"json_invalid_trader_search"," Invalid 'category' passed. Valid types include:    "}]  
+        [{"code":"json_invalid_trader_search"," Invalid 'category' passed. Valid types include: ..."}]  
     
 + Response 400 (application/json)
 
