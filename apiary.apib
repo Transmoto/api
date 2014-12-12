@@ -200,7 +200,7 @@ Return Trader ads that match the search criteria.
 
 ### Search Ads [GET]
 + Parameters
-    + filter%5Bs%5D (optional,string) ... The search string
+    + filter%5Bs%5D (optional,string) ... The search string. If passed this must be greater than 2 characters.
     + filter%5Bcategory%5D (optional,string)
     
         The category we should search in.
@@ -300,7 +300,11 @@ Return Trader ads that match the search criteria.
 + Response 400 (application/json)
 
         [{"code":"json_invalid_trader_search","message":"Invalid 's'. Must be blank or be three characters or greater"}]
-        
+   
+ + Response 400 (application/json)
+
+        [{"code":"json_invalid_trader_search"," Invalid 'category' passed. Valid types include:    "}]  
+    
 + Response 400 (application/json)
 
         [{"code":"json_invalid_trader_search","message":"Invalid min_price. Make sure your price contains numbers only (without currency symbols)"}]
