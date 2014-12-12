@@ -191,7 +191,7 @@ Pull ad details which matches the the ID passed.
         
         [{"code":"json_trader_disabled","message":"Sorry, the Transmoto Trader is currently offline."}]
 
-## Search Ads [/trader/search/{?filter%5Bs%5D,filter%5Bcategory%5D,filter%5Bprice_min%5D,filter%5Bprice_max%5D,filter%5Bcountry%5D,filter%5Bstate%5D,filter%5Blisting_type%5D,filter%5Bbike_type%5D,filter%5Bmake%5D,filter%5Bmodel%5D,filter%5Bmanufacture_year%5D,filter%5Bcurrently_registered%5D,filter%5Bcondition%5D}]
+## Search Ads [/trader/search/{?filter%5Bs%5D,filter%5Bcategory%5D,filter%5Bprice_min%5D,filter%5Bprice_max%5D,filter%5Bcountry%5D,filter%5Bstate%5D,filter%5Bpostcode%5D,filter%5Blisting_type%5D,filter%5Bbike_type%5D,filter%5Bmake%5D,filter%5Bmodel%5D,filter%5Bmanufacture_year%5D,filter%5Bcurrently_registered%5D,filter%5Bcondition%5D}]
 
 Return Trader ads that match the search criteria.
 
@@ -218,6 +218,7 @@ Return Trader ads that match the search criteria.
             + `USA`
             
     + filter%5Bstate%5D (optional,string) ... Select a state to search in. This is dependant on the 'country' field. One should not be passed without the other. See ... for more details on the correct values to pass.
+    + filter%5Bpostcode%5D (optional,string) ... Select a postcode to search in. This was designed to be used independantly of country/state but can be used together without any issues.
     + filter%5Blisting_type%5D (optional,string)
     
         Select whether we should be searching only `private` or `dealer` listings.
