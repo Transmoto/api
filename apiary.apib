@@ -54,10 +54,9 @@ Get the individual post details.
 + Response 403 (application/json)
                 
                 [{"code":"json_user_cannot_read","message":"Sorry, you cannot read this post."}]
-
-+ Response 403 (application/json)
-                
                 [{"code":"json_cannot_view","message":"Sorry, you cannot view this revision"}]
+                
+                
 
 ## Retrive Posts by Category [/posts/{?filter%5Bcategory_name%5D,filter%5Bposts_per_page%5D,page}]
 
@@ -116,10 +115,8 @@ The available parameters for the `filter[category_name]` option are:
 + Response 403 (application/json)
                 
                 [{"code":"json_user_cannot_read","message":"Sorry, you cannot read this post."}]
-
-+ Response 403 (application/json)
+                [{"code":"json_cannot_view","message":"Sorry, you cannot view this revision"}]   
                 
-                [{"code":"json_cannot_view","message":"Sorry, you cannot view this revision"}]                
                 
 # Group Trader
 
@@ -296,41 +293,14 @@ Return Trader ads that match the search criteria.
 + Response 400 (application/json)
 
         [{"code":"json_invalid_trader_search","message":"Invalid 's'. Must be blank or be three characters or greater"}]
-   
-+ Response 400 (application/json)
-
         [{"code":"json_invalid_trader_search","message":"Invalid 'category' passed. Valid types include: ..."}]  
-    
-+ Response 400 (application/json)
-
         [{"code":"json_invalid_trader_search","message":"Invalid min_price. Make sure your price contains numbers only (without currency symbols)"}]
-        
-+ Response 400 (application/json)
-
         [{"code":"json_invalid_trader_search","message":"Invalid max_price. Make sure your price contains numbers only (without currency symbols)"}]
-        
-+ Response 400 (application/json)
-
         [{"code":"json_invalid_trader_search","message":"Invalid 'type' passed. Valid types include: ..."}]
-        
-+ Response 400 (application/json)
-
         [{"code":"json_invalid_trader_search","message":"Invalid bike_type passed. Valid types include: ..."}]
-        
-+ Response 400 (application/json)
-
         [{"code":"json_invalid_trader_search","message":"Invalid bike_make passed. Valid types include: ..."}]
-        
-+ Response 400 (application/json)
-
         [{"code":"json_invalid_trader_search","message":"Invalid bike_manufacture_year. Ensure a valid 4-digit year."}]
-        
-+ Response 400 (application/json)
-
         [{"code":"json_invalid_trader_search","message":"Invalid bike_registered passed. Valid types include: ..."}]
-        
-+ Response 400 (application/json)
-
         [{"code":"json_invalid_trader_search","message":"Invalid acc_condition. Valid types include: ..."}]
 
 + Response 503 (application/json)
