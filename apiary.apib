@@ -194,13 +194,15 @@ Pull ad details which matches the the ID passed.
         
         [{"code":"json_trader_disabled","message":"Sorry, the Transmoto Trader is currently offline."}]
 
-## Search Ads [/trader/search/{?filter%5Bs%5D,filter%5Bprice-min%5D,filter%5Bprice-max%5D,filter%5Bcountry%5D,filter%5Bstate%5D,filter%5Btype%5D,filter%5Bbike-type%5D,filter%5Bbike-make%5D,filter%5Bbike-model%5D,filter%5Bbike-manufacture-year%5D,filter%5Bbike-registered%5D,filter%5Bacc-condition%5D}]
+## Search Ads [/trader/search/{?filter%5Bs%5D,filter%5Bprice_min%5D,filter%5Bprice_max%5D,filter%5Bcountry%5D,filter%5Bstate%5D,filter%5Btype%5D,filter%5Bbike_type%5D,filter%5Bbike_make%5D,filter%5Bbike_model%5D,filter%5Bbike_manufacture_year%5D,filter%5Bbike_registered%5D,filter%5Bacc_condition%5D}]
 
 Return Trader ads that match the search criteria.
 
 ### Search Ads [GET]
 + Parameters
-    + filter%5Bs%5D (string) ... The ad ID you want to retreive information from.
+    + filter%5Bs%5D (optional,string) ... The search string
+    + filter%5Bprice_min%5D (optional,integer) ... Search based on the minimum price an ad should be
+    + filter%5Bprice_max%5D (optional,integer) ... Search based on the maximum price an ad should be
 
 + Response 200 (application/json)
         
