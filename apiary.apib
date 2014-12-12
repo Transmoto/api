@@ -1,5 +1,5 @@
 FORMAT: 1A
-HOST: staging.transmoto.com.au/wp-json
+
 
 # Transmoto
 The Transmoto REST API will be used to serve the Transmoto Mobile Application. Other services may also use them in the future.
@@ -203,29 +203,85 @@ Return Trader ads that match the search criteria.
     + filter%5Bs%5D (optional,string) ... The search string
     + filter%5Bprice_min%5D (optional,integer) ... Search based on the minimum price an ad should be
     + filter%5Bprice_max%5D (optional,integer) ... Search based on the maximum price an ad should be
-    + filter%5Bcountry%5D (optional,integer)
+    + filter%5Bcountry%5D (optional,string)
     
-        Select a country to search in.
+        Select a country to search in. See ... for more details on the correct values to pass.
     
         + Values
             + `Australia`
             + `New Zealand`
             + `USA`
             
-    + filter%5Bstate%5D (optional,integer)
+    + filter%5Bstate%5D (optional,string) ... Select a state to search in. This is dependant on the 'country' field. One should not be passed without the other. See ... for more details on the correct values to pass.
+    + filter%5Btype%5D (optional,string)
     
-        Select a state to search in. This is dependant on the 'country' field. One should not be passed without the other.
+        Select whether we should be searching only `private` or `dealer` listings.
 
         + Values
-            + `Australian Capital Territory`
-            + `New South Wales`
-            + `Northern Territory`
-            + `Queensland`
-            + `South Australia`
-            + `Tasmania`
-            + `Victoria`
-            + `Western Australia` 
+            + `Private`
+            + `Dealer`
             
+    + filter%5Bbike_type%5D (optional,string)
+    
+        Search by motorcycle type.
+        
+        + Values
+            + `Enduro/Trail`
+            + `Motocross`
+            + `Dual/Adventure`
+            + `Mini/Fun`
+            + `Road`
+            
+    + filter%5Bbike_make%5D (optional,string)
+    
+        Search by motorcycle make.
+        
+        + Values
+            + `Aprilia`
+            + `Beta`
+            + `BMW`
+            + `Can-Am`
+            + `Ducati`
+            + `Harley Davidson`
+            + `Honda`
+            + `Husaberg`
+            + `Husqvarna`
+            + `Kawasaki`
+            + `KTM`
+            + `Ossa`
+            + `Polaris`
+            + `Suzuki`
+            + `TM`
+            + `Triumph`
+            + `Yamaha`
+            + `Other`
+    
+    + filter%5Bbike_model%5D (optional,string) ... Search by motorcycle model.
+    
+    + filter%5Bbike_manufacture_year%5D (optional,integer) ... Search by the year of manufacture.
+    
+    + filter%5Bbike_registered%5D (optional,string)
+        
+        Search for registered or unregistered motorcycles
+        
+        + Values
+            + `No`
+            + `Yes`
+            
+    + filter%5Bacc_condition%5D (optional,string)
+    
+        Search for accessories that are in a specific condition.
+        
+        + Values
+            + `Poor`
+            + `Fair`
+            + `Good`
+            + `Excellent`
+            + `Near New`
+            + `Brand New`
+    
+
+
 
     
 
