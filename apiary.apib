@@ -203,6 +203,31 @@ Return Trader ads that match the search criteria.
     + filter%5Bs%5D (optional,string) ... The search string
     + filter%5Bprice_min%5D (optional,integer) ... Search based on the minimum price an ad should be
     + filter%5Bprice_max%5D (optional,integer) ... Search based on the maximum price an ad should be
+    + filter%5Bcountry%5D (optional,integer)
+    
+        Select a country to search in.
+    
+        + Values
+            + `Australia`
+            + `New Zealand`
+            + `USA`
+            
+    + filter%5Bstate%5D (optional,integer)
+    
+        Select a state to search in. This is dependant on the 'country' field. One should not be passed without the other.
+
+        + Values
+            + `Australian Capital Territory`
+            + `New South Wales`
+            + `Northern Territory`
+            + `Queensland`
+            + `South Australia`
+            + `Tasmania`
+            + `Victoria`
+            + `Western Australia` 
+            
+
+    
 
 + Response 200 (application/json)
         
