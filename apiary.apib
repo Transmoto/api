@@ -134,7 +134,7 @@ Get all current Trader Ads on Transmoto.
 ### List Ads [GET]
 + Parameters
     + page (optional,integer) ... Select which page of ads you should get. This functions exactly like the website's pagination. The most current ads will be on page 1. 
-    + ads_per_page (optional,integer) ... The number of ads to retreive. By default this is 16.
+    + filter%5Bads_per_page%5D (optional,integer) ... The number of ads to retreive. By default this is 16.
 
 + Response 200 (application/json)
         
@@ -151,7 +151,7 @@ Get all current **dealer** ads on Transmoto.
 ### List Ads [GET]
 + Parameters
     + page (optional,integer) ... Select which page of ads you should get. This functions exactly like the website's pagination. The most current ads will be on page 1. 
-    + ads_per_page (optional,integer) ... The number of ads to retreive. By default this is 16.
+    + filter%5Bads_per_page%5D (optional,integer) ... The number of ads to retreive. By default this is 16.
 
 + Response 200 (application/json)
         
@@ -168,7 +168,7 @@ Get all current **private** ads on Transmoto.
 ### List Ads [GET]
 + Parameters
     + page (optional,integer) ... Select which page of ads you should get. This functions exactly like the website's pagination. The most current ads will be on page 1. 
-    + ads_per_page (optional,integer) ... The number of ads to retreive. By default this is 16.
+    + filter%5Bads_per_page%5D (optional,integer) ... The number of ads to retreive. By default this is 16.
 
 + Response 200 (application/json)
         
@@ -185,6 +185,22 @@ Pull ad details which matches the the ID passed.
 ### List Ads [GET]
 + Parameters
     + id (integer) ... The ad ID you want to retreive information from.
+
++ Response 200 (application/json)
+        
+        [{"ad_id":"236","ad_title":"2012 TRIUMPH TIGER 800","ad_details":"*** LOCATED AT KTM NEWCASTL, NSW ***\r\n\r\n- WE ARE AUSTRALIAS NUMBER 1 OVERALL KTM DEALER -\r\n\r\n- GREAT CONDITION\r\n- REGULAR SERVICE HISTORY\r\n- SW MOTEC CENTRE STAND\r\n- SW MOTEC CRASHBARS\r\n- SW MOTEC PANNIER FRAMES\r\n- SW MOTEC BASHPLATE\r\n- GIVI TOURING SCREEN\r\n- MICHELIN PILOT ROAD 3 TYRES (85%)\r\n\r\n\r\n*** EASY FINANCE OPTIONS AVAILABLE ***","ad_contact_name":"KTM Newcastle","ad_contact_phone":"02 4037 3333","ad_contact_email":"myles@ktmnewcastle.com.au","ad_postdate":"2014-11-24","ad_last_updated":"2014-11-24","listing_type":"Dealer","is_featured_ad":"1","bike_type":"Dual\/Adventure","currently_registered":"Yes","make":"Triumph","model":"TIGER 800","manufacture_year":"2012","odometer_run_time":"31552KM","postcode":"2292","poa":"0","category_name":"Bikes"}]
+
++ Response 503 (application/json)
+        
+        [{"code":"json_trader_disabled","message":"Sorry, the Transmoto Trader is currently offline."}]
+
+## Search Ads [/trader/search/{?filter%5Bs%5D,filter%5Bprice-min%5D,filter%5Bprice-max%5D,filter%5Bcountry%5D,filter%5Bstate%5D,filter%5Btype%5D,filter%5Bbike-type%5D,filter%5Bbike-make%5D,filter%5Bbike-model%5D,filter%5Bbike-manufacture-year%5D,filter%5Bbike-registered%5D,filter%5Bacc-condition%5D}]
+
+Return Trader ads that match the search criteria.
+
+### Search Ads [GET]
++ Parameters
+    + filter%5Bs%5D (string) ... The ad ID you want to retreive information from.
 
 + Response 200 (application/json)
         
