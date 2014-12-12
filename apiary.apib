@@ -55,6 +55,26 @@ Get the individual post details.
                 
                 [{"code":"json_user_cannot_read","message":"Sorry, you cannot read this post."}]
                 [{"code":"json_cannot_view","message":"Sorry, you cannot view this revision"}]
+
+## Retrive Post Comments [/posts/{id}/comments]
+
+Get comments related to post.
+
+### Get Post [GET]
++ Parameters
+    + id (integer) ... The ID used to select a post.
+
++ Response 200 (application/json)
+
+                [{"ID":39,"post":28145,"content":"<p>Awesome comment 2<\/p>\n","status":"approved","type":"comment","parent":0,"author":{"ID":1,"username":"Jake Jackson","name":"Jake Jackson","first_name":"Jake","last_name":"Jackson","nickname":"Jake Jackson","slug":"jake-jackson","URL":"","avatar":"http:\/\/staging.transmoto.com.au\/wp-content\/uploads\/avatars\/1\/12ed4c859be05b9079e6b2166ec57c9e-bpfull.jpg","description":"","registered":"2013-08-06T10:28:44+00:00","meta":{"links":{"self":"http:\/\/staging.transmoto.com.au\/wp-json\/users\/1","archives":"http:\/\/staging.transmoto.com.au\/wp-json\/users\/1\/posts"}}},"date":"2014-12-12T15:37:57","date_gmt":"2014-12-12T05:37:57","meta":{"links":{"up":"http:\/\/staging.transmoto.com.au\/wp-json\/posts\/28145","self":"http:\/\/staging.transmoto.com.au\/wp-json\/posts\/28145\/comments\/39"}}},{"ID":38,"post":28145,"content":"<p>Awesome comment 1<\/p>\n","status":"approved","type":"comment","parent":0,"author":{"ID":1,"username":"Jake Jackson","name":"Jake Jackson","first_name":"Jake","last_name":"Jackson","nickname":"Jake Jackson","slug":"jake-jackson","URL":"","avatar":"http:\/\/staging.transmoto.com.au\/wp-content\/uploads\/avatars\/1\/12ed4c859be05b9079e6b2166ec57c9e-bpfull.jpg","description":"","registered":"2013-08-06T10:28:44+00:00","meta":{"links":{"self":"http:\/\/staging.transmoto.com.au\/wp-json\/users\/1","archives":"http:\/\/staging.transmoto.com.au\/wp-json\/users\/1\/posts"}}},"date":"2014-12-12T15:37:50","date_gmt":"2014-12-12T05:37:50","meta":{"links":{"up":"http:\/\/staging.transmoto.com.au\/wp-json\/posts\/28145","self":"http:\/\/staging.transmoto.com.au\/wp-json\/posts\/28145\/comments\/38"}}}]
+
++ Response 401 (application/json)
+                
+                [{"code":"json_user_cannot_read","message":"Sorry, you cannot read this post."}]
+
++ Response 404 (application/json)
+                
+                [{"code":"json_post_invalid_id","message":"Invalid post ID."}]
                 
                 
 
