@@ -58,7 +58,7 @@ Get the individual post details.
                 
                 
 
-## Retrive Posts by Category [/posts/{?filter%5Bcategory_name%5D,filter%5Bposts_per_page%5D,page}]
+## Retrive Posts by Category [/posts/{?filter[category_name],filter[posts_per_page],page}]
 
 Select Transmoto posts by a category.
 
@@ -82,7 +82,7 @@ The available parameters for the `filter[category_name]` option are:
 * `usa-insider`
 
 + Parameters
-    + filter%5Bcategory_name%5D (string)
+    + filter[category_name] (string)
     
         The name of the category you wish to select. You can pass multiple categories using a comma `,`
 
@@ -101,7 +101,7 @@ The available parameters for the `filter[category_name]` option are:
             + `usa-insider`
                 
     + page (optional,integer) ... Select which page of posts you should get. This functions exactly like the website's pagination. The most current posts will be on page 1. 
-    + filter%5Bposts_per_page%5D (optional,integer) ... The number of posts to retreive. By default this is 16.
+    + filter[posts_per_page] (optional,integer) ... The number of posts to retreive. By default this is 16.
 
 ### Get Posts [GET]
 + Response 200 (application/json)
@@ -124,14 +124,14 @@ The Transmoto Trader API can be used to get classifieds posted from the Transmot
 
 **Note:** Ads will only be returned 16 items at a time. Use the `page` attribute to get the next batch of ads. Use the `ads_per_page` attribute to change the number of ads returned.
 
-## Retrive All Ads [/trader/{?filter%5Bads_per_page%5D,page}]
+## Retrive All Ads [/trader/{?filter[ads_per_page],page}]
 
 Get all current Trader Ads on Transmoto. 
 
 ### List Ads [GET]
 + Parameters
     + page (optional,integer) ... Select which page of ads you should get. This functions exactly like the website's pagination. The most current ads will be on page 1. 
-    + filter%5Bads_per_page%5D (optional,integer) ... The number of ads to retreive. By default this is 16.
+    + filter[ads_per_page] (optional,integer) ... The number of ads to retreive. By default this is 16.
 
 + Response 200 (application/json)
         
@@ -141,14 +141,14 @@ Get all current Trader Ads on Transmoto.
         
         [{"code":"json_trader_disabled","message":"Sorry, the Transmoto Trader is currently offline."}]
 
-## Retrive Dealer Ads [/trader/dealer/{?filter%5Bads_per_page%5D,page}]
+## Retrive Dealer Ads [/trader/dealer/{?filter[ads_per_page],page}]
 
 Get all current **dealer** ads on Transmoto. 
 
 ### List Ads [GET]
 + Parameters
     + page (optional,integer) ... Select which page of ads you should get. This functions exactly like the website's pagination. The most current ads will be on page 1. 
-    + filter%5Bads_per_page%5D (optional,integer) ... The number of ads to retreive. By default this is 16.
+    + filter[ads_per_page] (optional,integer) ... The number of ads to retreive. By default this is 16.
 
 + Response 200 (application/json)
         
@@ -158,14 +158,14 @@ Get all current **dealer** ads on Transmoto.
         
         [{"code":"json_trader_disabled","message":"Sorry, the Transmoto Trader is currently offline."}]
 
-## Retrive Private Ads [/trader/private/{?filter%5Bads_per_page%5D,page}]
+## Retrive Private Ads [/trader/private/{?filter[ads_per_page],page}]
 
 Get all current **private** ads on Transmoto. 
 
 ### List Ads [GET]
 + Parameters
     + page (optional,integer) ... Select which page of ads you should get. This functions exactly like the website's pagination. The most current ads will be on page 1. 
-    + filter%5Bads_per_page%5D (optional,integer) ... The number of ads to retreive. By default this is 16.
+    + filter[ads_per_page] (optional,integer) ... The number of ads to retreive. By default this is 16.
 
 + Response 200 (application/json)
         
@@ -191,14 +191,14 @@ Pull ad details which matches the the ID passed.
         
         [{"code":"json_trader_disabled","message":"Sorry, the Transmoto Trader is currently offline."}]
 
-## Search Ads [/trader/search/{?filter%5Bs%5D,filter%5Bcategory%5D,filter%5Bprice_min%5D,filter%5Bprice_max%5D,filter%5Bcountry%5D,filter%5Bstate%5D,filter%5Bpostcode%5D,filter%5Blisting_type%5D,filter%5Bbike_type%5D,filter%5Bmake%5D,filter%5Bmodel%5D,filter%5Bmanufacture_year%5D,filter%5Bcurrently_registered%5D,filter%5Bcondition%5D}]
+## Search Ads [/trader/search/{?filter[s],filter[category],filter[price_min],filter[price_max],filter[country],filter[state],filter[postcode],filter[listing_type],filter[bike_type],filter[make],filter[model],filter[manufacture_year],filter[currently_registered],filter[condition]}]
 
 Return Trader ads that match the search criteria.
 
 ### Search Ads [GET]
 + Parameters
-    + filter%5Bs%5D (optional,string) ... The search string. If passed this must be greater than 2 characters.
-    + filter%5Bcategory%5D (optional,string)
+    + filter[s] (optional,string) ... The search string. If passed this must be greater than 2 characters.
+    + filter[category] (optional,string)
     
         The category we should search in.
 
@@ -206,9 +206,9 @@ Return Trader ads that match the search criteria.
             + `Bike`
             + `Accessories`
             
-    + filter%5Bprice_min%5D (optional,integer) ... Search based on the minimum price an ad should be
-    + filter%5Bprice_max%5D (optional,integer) ... Search based on the maximum price an ad should be
-    + filter%5Bcountry%5D (optional,string)
+    + filter[price_min] (optional,integer) ... Search based on the minimum price an ad should be
+    + filter[price_max] (optional,integer) ... Search based on the maximum price an ad should be
+    + filter[country] (optional,string)
     
         Select a country to search in. See ... for more details on the correct values to pass.
     
@@ -217,9 +217,9 @@ Return Trader ads that match the search criteria.
             + `New Zealand`
             + `USA`
             
-    + filter%5Bstate%5D (optional,string) ... Select a state to search in. This is dependant on the 'country' field. One should not be passed without the other. See ... for more details on the correct values to pass.
-    + filter%5Bpostcode%5D (optional,string) ... Select a postcode to search in. This was designed to be used independantly of country/state but can be used together without any issues.
-    + filter%5Blisting_type%5D (optional,string)
+    + filter[state] (optional,string) ... Select a state to search in. This is dependant on the 'country' field. One should not be passed without the other. See ... for more details on the correct values to pass.
+    + filter[postcode] (optional,string) ... Select a postcode to search in. This was designed to be used independantly of country/state but can be used together without any issues.
+    + filter[listing_type] (optional,string)
     
         Select whether we should be searching only `private` or `dealer` listings.
 
@@ -227,7 +227,7 @@ Return Trader ads that match the search criteria.
             + `Private`
             + `Dealer`
             
-    + filter%5Bbike_type%5D (optional,string)
+    + filter[bike_type] (optional,string)
     
         Search by motorcycle type.
         
@@ -238,7 +238,7 @@ Return Trader ads that match the search criteria.
             + `Mini/Fun`
             + `Road`
             
-    + filter%5Bmake%5D (optional,string)
+    + filter[make] (optional,string)
     
         Search by motorcycle make.
         
@@ -262,11 +262,11 @@ Return Trader ads that match the search criteria.
             + `Yamaha`
             + `Other`
     
-    + filter%5Bmodel%5D (optional,string) ... Search by motorcycle model.
+    + filter[model] (optional,string) ... Search by motorcycle model.
     
-    + filter%5Bmanufacture_year%5D (optional,integer) ... Search by the year of manufacture.
+    + filter[manufacture_year] (optional,integer) ... Search by the year of manufacture.
     
-    + filter%5Bcurrently_registered%5D (optional,string)
+    + filter[currently_registered] (optional,string)
         
         Search for registered or unregistered motorcycles
         
@@ -274,7 +274,7 @@ Return Trader ads that match the search criteria.
             + `No`
             + `Yes`
             
-    + filter%5Bcondition%5D (optional,string)
+    + filter[condition] (optional,string)
     
         Search for accessories that are in a specific condition.
         
