@@ -361,13 +361,13 @@ Get a list of available premium content categories.
     
         [{"term_id":"143","name":"DIY","description":"DIY Description...","count":"2","featured_image":["http:\/\/staging.transmoto.com.au\/wp-content\/uploads\/2014\/12\/Desert_test.jpg",1600,1600,false]},{"term_id":"142","name":"How To","description":"Description of how to, should we need one...","count":"2","featured_image":false}]
 
-## Get Category Content [/premium/cat/{id}{?filter[posts_per_page],page}]
+## Get Category Content [/premium/cat/{id}/{?filter%5Bposts_per_page%5D,page}]
 
 Get a list of premium content in the category. This endpoint includes NO substantial content (see `/premium/{id}`)
 
 ### Get Category Content [GET]
 + Parameters
-    + filter[posts_per_page] (optional,integer) ... The number of posts to retreive. By default this is 16.
+    + filter%5Bposts_per_page%5D (optional,integer) ... The number of posts to retreive. By default this is 16.
     + page (optional,integer)  ... Select which page of posts you should get. This functions exactly like the website's pagination. The most current posts will be on page 1.  
 
 + Response 200 (application/json)
