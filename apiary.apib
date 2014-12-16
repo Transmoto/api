@@ -365,6 +365,8 @@ Get a list of available premium content categories.
 
 Get a list of premium content in the category. This endpoint includes NO substantial content (see `/premium/{id}`)
 
+Special attention should be paid to the 'free' key in the response which will signify whether that particular post is paid for, or a freebie. If `free` is true then no payment should be made to access that post's content. 
+
 ### Get Category Content [GET]
 + Parameters
     + id (integer) ... The category ID that we should get the posts from. See `/premium/cat` for a list of valid categories.
@@ -378,6 +380,8 @@ Get a list of premium content in the category. This endpoint includes NO substan
 ## Get Premium Content [/premium/{id}]
 
 Get the premium content matching the passed ID. TODO: still need to introduce an authentication process to prevent anyone accessing the premium content.
+
+If a post is marked as `free` (see notes in the `/premium/cat/{id}` section above) you can use this endpoint to get that information without authentication.
 
 ### Get Premium Content [GET]
 
