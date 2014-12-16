@@ -351,7 +351,7 @@ Retreive the valid country and state values used in Trader Searches.
 
 This section of the API describes the end-points for accessing the premium content. Except for `/premium/<id>` all these endpoints are public.
 
-## Premium Categories [/premium/cat/]
+## Premium Categories [/premium/cat]
 
 Get a list of available premium content categories.
 
@@ -367,6 +367,7 @@ Get a list of premium content in the category. This endpoint includes NO substan
 
 ### Get Category Content [GET]
 + Parameters
+    + id (integer) ... The category ID that we should get the posts from. See `/premium/cat` for a list of valid categories.
     + filter%5Bposts_per_page%5D (optional,integer) ... The number of posts to retreive. By default this is 16.
     + page (optional,integer)  ... Select which page of posts you should get. This functions exactly like the website's pagination. The most current posts will be on page 1.  
 
