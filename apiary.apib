@@ -347,3 +347,37 @@ Retreive the valid country and state values used in Trader Searches.
         
         [{"code":"json_trader_disabled","message":"Sorry, the Transmoto Trader is currently offline."}]
 
+# Group Premium
+
+This section of the API describes the end-points for accessing the premium content. Except for `/premium/<id>` all these endpoints are public.
+
+## Premium Categories [/premium/cat/]
+
+Get a list of available premium content categories.
+
+### Get Categories [GET]
+
++ Response 200 (application/json)
+    
+        []
+
+## Get Category Content [/premium/cat/{id}]
+
+Get a list of premium content in the category. This endpoint includes NO substantial content (see `/premium/{id}`)
+
+### Get Category Content [GET]
+
++ Response 200 (application/json)
+    
+        []
+
+## Get Premium Content [/premium/{id}]
+
+Get the premium content matching the passed ID. TODO: still need to introduce an authentication process to prevent anyone accessing the premium content.
+
+### Get Premium Content [GET]
+
++ Response 200 (application/json)
+    
+        []
+
