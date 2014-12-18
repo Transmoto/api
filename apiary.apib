@@ -14,6 +14,22 @@ The Transmoto Posts API can be used to get posts from the website. You can get a
 
 Get all current posts on Transmoto. 
 
+**Response key description:**
+
+Below we've listed the important post response keys with a brief description.
+
+* *ID*: The post ID
+* *title*: The article title
+* *content*: The article content
+* *date*: The date the article was published in Sydney Australia time (GMT+10/+11)
+* *date_gmt*: The date the article was published in GMT0. This should be used to convert the published date to local time.
+* *modified*: When the article was last modified in Sydney Australia time (GMT+10/+11)
+* *modified_gmt*: When the article was last modified in GMT0. This should be used to convert the modified date to local time.
+* *featured_image*: The articles featured image. You can get the image size from the `featured_image.attachment_meta.sizes` key
+* *link*: The URL to the online article. 
+* *terms*: Contains the category and tags assigned to the article. This is split into `terms.category` and `terms.post_tag`. 
+
+
 ### List Posts [GET]
 + Parameters
     + page (optional,integer) ... Select which page of posts you should get. This functions exactly like the website's pagination. The most current posts will be on page 1. 
@@ -31,14 +47,13 @@ Get all current posts on Transmoto.
 + Response 403 (application/json)
                 
                 [{"code":"json_user_cannot_read","message":"Sorry, you cannot read this post."}]
-
-+ Response 403 (application/json)
-                
                 [{"code":"json_cannot_view","message":"Sorry, you cannot view this revision"}]                
 
 ## Retrive Single Posts [/posts/{id}]
 
-Get the individual post details.
+Get the individual post details. 
+
+See `/posts/` endpoint for a description of the response keys.
 
 ### Get Post [GET]
 + Parameters
@@ -101,6 +116,8 @@ The available parameters for the `filter[category_name]` option are:
 * `nz-insider`
 * `throwdown-weekly-features`
 * `usa-insider`
+
+See `/posts/` endpoint for a description of the response keys.
 
 + Parameters
     + filter%5Bcategory_name%5D (string)
@@ -357,7 +374,7 @@ Get a list of available premium content categories. Categories are not nested so
 
 **This is a PUBLIC endpoint.**
 
-Response key description:
+**Response key description:**
 
 * *term_id*: the category ID (used in `/premium/cat/{id}` endpoint)
 * *name*: the category name
@@ -380,6 +397,8 @@ Response key description:
 Get a list of premium content in the category. This endpoint includes NO substantial content (see `/premium/{id}`)
 
 Special attention should be paid to the 'free' key in the response which signifies whether that particular post is paid for, or a freebie. If `free` is true then no payment should be made to access that post's content, and you can safely request the post using the `/premium/{id}` endpoint.
+
+The `featured_image` URL can be glemed from the `featured_image.attachment_meta.sizes` node. 
 
 **This is a PUBLIC endpoint.**
 
@@ -416,6 +435,10 @@ If a post is marked as `free` (see notes in the `/premium/cat/{id}` section abov
 + Response 400 (application/json)
 
         [{"code":"json_user_cannot_read","message":"Post not marked as \"premium\" content. Use \/wp-json\/posts\/{id} endpoint instead."}]
+
++ Response 401 (application/json)        
+
+        [{"code":"json_user_cannot_read","message":"Authentication required to view this article."}]        
         
 + Response 404 (application/json)
         
