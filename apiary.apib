@@ -166,6 +166,28 @@ The Transmoto Trader API can be used to get classifieds posted from the Transmot
 
 Get all current Trader Ads on Transmoto. 
 
+**Response key description:**
+
+Below we've listed the important ad response keys with a brief description.
+
+* *ad_id*: The Trader ad ID
+* *ad_title*: The title of the ad
+* *ad_details*: The ad description
+* *ad_price*: The asking price for the ad
+* *poa*: Returns 1 if the item should be marked 'Price on Application', or 0 if the price should be shown
+* *ad_contact_name*: The name of the individual/dealer who posted the ad
+* *ad_contact_phone*: The phone number (if any) of the individual/dealer who posted the ad
+* *ad_contact_email*: The email address of the individual/dealer who posted the ad
+* *ad_listing_type*: Whether the ad was posted by a `Dealer` or `Private` seller.
+* *is_featured_ad*: Whether the ad in a standard (returns `0`) or premium ad (returns `1`). 
+* *ad_postdate*: The date the ad was originally posted in Sydney Australia time (GMT+10/11)
+* *ad_last_updated*: The date the ad was last updated in Sydney Australia time (GMT+10/11)
+* *category_name*: The category the ad was posted in
+* *country*: The country the item is located
+* *state*: The state the item is located
+* *postcode*: The postcode the item is located
+
+
 ### List Ads [GET]
 + Parameters
     + page (optional,integer) ... Select which page of ads you should get. This functions exactly like the website's pagination. The most current ads will be on page 1. 
