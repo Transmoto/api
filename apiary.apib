@@ -158,7 +158,7 @@ See `/posts/` endpoint for a description of the response keys.
                 
 # Group Trader
 
-The Transmoto Trader API can be used to get classifieds posted from the Transmoto Trader. You can get all current ads, get them by type - dealer or private, or search ads.
+The Transmoto Trader API can be used to get classified ads in the Transmoto Trader. You can get all current ads, get them by type - dealer or private - or search ads.
 
 **Note:** Ads will only be returned 16 items at a time. Use the `page` attribute to get the next batch of ads. Use the `ads_per_page` attribute to change the number of ads returned.
 
@@ -188,7 +188,7 @@ Below we've listed the important ad response keys with a brief description.
 * *state*: The state the item is located
 * *postcode*: The postcode the item is located
 
-The other returned values are category-specific. 
+The other returned values are category-specific and are listed below.
 
 **The `Bikes` category will return:**
 
@@ -199,7 +199,7 @@ The other returned values are category-specific.
 * `odometer_run_time`
 * `currently_registered`
 
-** The `Accessories` cateogry will return:**
+**The `Accessories` cateogry will return:**
 
 * `condition`
 
@@ -254,7 +254,7 @@ See `/trader/` endpoint for a description of the response keys.
         
         [{"code":"json_trader_disabled","message":"Sorry, the Transmoto Trader is currently offline."}]
 
-## Retrive Individual Ads [/trader/private/{id}]
+## Retrive Individual Ads [/trader/{id}]
 
 Pull ad details which matches the the ID passed.
 
