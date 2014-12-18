@@ -439,7 +439,9 @@ Get a list of available premium content categories. Categories are not nested so
 
 Get a list of premium content in the category. This endpoint includes NO substantial content (see `/premium/{id}`)
 
-Special attention should be paid to the 'free' key in the response which signifies whether that particular post is paid for, or a freebie. If `free` is true then no payment should be made to access that post's content, and you can safely request the post using the `/premium/{id}` endpoint.
+The returned results are ordered by free articles first, then the published date. 
+
+Special attention should be paid to the 'free' key in the response, which signifies whether that particular post is paid for, or a freebie. If `free` is true then no payment should be made to access that post's content, and you can safely request the post using the `/premium/{id}` endpoint.
 
 The `featured_image` URL can be glemed from the `featured_image.attachment_meta.sizes` node. 
 
