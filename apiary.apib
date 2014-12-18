@@ -173,7 +173,8 @@ Below we've listed the important ad response keys with a brief description.
 * *ad_id*: The Trader ad ID
 * *ad_title*: The title of the ad
 * *ad_details*: The ad description
-* *ad_price*: The asking price for the ad
+* *ad_item_price*: The asking price for the ad, correctly formatted with a dollar sign to two decimal places.
+* *ad_clean_item_price*: The unformated item price returned as an integer/float
 * *poa*: Returns 1 if the item should be marked 'Price on Application', or 0 if the price should be shown
 * *ad_contact_name*: The name of the individual/dealer who posted the ad
 * *ad_contact_phone*: The phone number (if any) of the individual/dealer who posted the ad
@@ -187,6 +188,20 @@ Below we've listed the important ad response keys with a brief description.
 * *state*: The state the item is located
 * *postcode*: The postcode the item is located
 
+The other returned values are category-specific. 
+
+**The `Bikes` category will return:**
+
+* `bike_type`
+* `make`
+* `model`
+* `manufacture_year`
+* `odometer_run_time`
+* `currently_registered`
+
+** The `Accessories` cateogry will return:**
+
+* `condition`
 
 ### List Ads [GET]
 + Parameters
@@ -195,7 +210,7 @@ Below we've listed the important ad response keys with a brief description.
 
 + Response 200 (application/json)
         
-        [{"ad_id":"234","ad_title":"Husqvarna FC 250 2014","ad_details":"Husqvarna FC 250 2014, immaculate condition it has 30 hours on it. Has new chain and sprockets, new tyres front and rear, new brake pads. Used as a second practise bike and parts and raced one race. Call me for any other info you will not be disappointed.  ","ad_contact_name":"lachlan stanford","ad_contact_phone":"0412239917","ad_contact_email":"lachlan.stanford28@gmail.com","ad_postdate":"2014-11-19","ad_last_updated":"2014-11-19","listing_type":"Private","is_featured_ad":"0","bike_type":"Motocross","currently_registered":"No","make":"Husqvarna","model":"FC","manufacture_year":"2014","odometer_run_time":"30","postcode":"2481","poa":"0","country":"Australia","state":"NSW","category_name":"Bikes"},{"ad_id":"233","ad_title":"TC250 HUSKY FOR SALE","ad_details":"One owner, good condition didn&#039;t get to  ride such, didn&#039;t have the time. \r\nLooking for a home that will appreciate her!","ad_contact_name":"Noela Matthews","ad_contact_phone":"0419753200","ad_contact_email":"noela@colorstudio.com.au","ad_postdate":"2014-11-18","ad_last_updated":"2014-11-18","listing_type":"Private","is_featured_ad":"1","bike_type":"Motocross","currently_registered":"No","make":"Husqvarna","model":"TC250","manufacture_year":"2010","postcode":"4880","poa":"0","country":"Australia","state":"QLD","category_name":"Bikes"}]
+        [{"ad_id":"224","ad_title":"2012 KTM DUKE200","ad_clean_item_price":5000,"ad_item_price":"$5,000.00","ad_details":"IN-HOUSE FINANCE AVAILABLE ","ad_contact_name":"Chris Sutton","ad_contact_phone":"02 4737 9566","ad_contact_email":"sales@suttosmc.com.au","ad_postdate":"2014-11-12","ad_last_updated":"2014-11-12","listing_type":"Dealer","is_featured_ad":"0","bike_type":"Road","currently_registered":"Yes","make":"KTM","model":"DUKE200","manufacture_year":"2012","odometer_run_time":"340KM","postcode":"2750","poa":"0","country":"Australia","state":"NSW","category_name":"Bikes"},{"ad_id":"223","ad_title":"2015 KTM 200EXC","ad_clean_item_price":"0","ad_item_price":"0","ad_details":"LOCATED AT KTM NEWCASTLE \r\n\r\n--- WE ARE AUSTRALIA&#039;S #1 KTM OVERALL DEALER ---\r\n\r\nThe perfect synthesis of the playful handling of a 125 and impressive engine power that comes close to that of a 250. The 200 EXC is equipped as standard with an electric starter and for 2014 it now has a substantially more powerful starter motor for greater starting reliability. The 200 EXC is the first choice for all those seeking ultimate handling, first-class comfort and plenty of power outside the competitive classes and who really appreciate fun, easy rideability and low costs.\r\n\r\nEASY FINANCE OPTIONS A","ad_contact_name":"KTM Newcastle","ad_contact_phone":"","ad_contact_email":"myles@ktmnewcastle.com.au","ad_postdate":"2014-11-12","ad_last_updated":"2014-11-12","listing_type":"Dealer","is_featured_ad":"0","bike_type":"Enduro\/Trail","currently_registered":"No","make":"Ossa","model":"200EXC","manufacture_year":"2015","odometer_run_time":"NEW","postcode":"2292","poa":"1","country":"Australia","state":"NSW","category_name":"Bikes"}]
 
 + Response 503 (application/json)
         
@@ -204,6 +219,8 @@ Below we've listed the important ad response keys with a brief description.
 ## Retrive Dealer Ads [/trader/dealer/{?filter%5Bads_per_page%5D,page}]
 
 Get all current **dealer** ads on Transmoto. 
+
+See `/trader/` endpoint for a description of the response keys.
 
 ### List Ads [GET]
 + Parameters
@@ -221,6 +238,8 @@ Get all current **dealer** ads on Transmoto.
 ## Retrive Private Ads [/trader/private/{?filter%5Bads_per_page%5D,page}]
 
 Get all current **private** ads on Transmoto. 
+
+See `/trader/` endpoint for a description of the response keys.
 
 ### List Ads [GET]
 + Parameters
@@ -255,6 +274,8 @@ Pull ad details which matches the the ID passed.
 
 Return Trader ads that match the search criteria.
 
+See `/trader/` endpoint for a description of the response keys.
+
 ### Search Ads [GET]
 + Parameters
     + filter%5Bs%5D (optional,string) ... The search string. If passed this must be greater than 2 characters.
@@ -263,7 +284,7 @@ Return Trader ads that match the search criteria.
         The category we should search in.
 
         + Values
-            + `Bike`
+            + `Bikes`
             + `Accessories`
             
     + filter%5Bprice_min%5D (optional,integer) ... Search based on the minimum price an ad should be
@@ -372,7 +393,7 @@ Return Trader ads that match the search criteria.
         
         [{"code":"json_trader_disabled","message":"Sorry, the Transmoto Trader is currently offline."}]
 
-## Trader Regions [/trader/search/region]
+## Trader Regions [/trader/search/regions]
 
 Retreive the valid country and state values used in Trader Searches.
 
@@ -422,6 +443,8 @@ Special attention should be paid to the 'free' key in the response which signifi
 
 The `featured_image` URL can be glemed from the `featured_image.attachment_meta.sizes` node. 
 
+The reponse keys are similar to the `/posts/` endpoint, but specific information has been removed to prevent unauthorised access.
+
 **This is a PUBLIC endpoint.**
 
 ### Get Category Content [GET]
@@ -445,6 +468,8 @@ Get the premium content matching the passed ID.
 TODO: still need to introduce an authentication process to prevent anyone accessing the premium content.
 
 If a post is marked as `free` (see notes in the `/premium/cat/{id}` section above) you can use this endpoint to get that information without authentication.
+
+See `/posts/` endpoint for a description of the response keys.
 
 **This is a PRIVATE endpoint.**
 
