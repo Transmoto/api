@@ -8,7 +8,7 @@ The Transmoto REST API will be used to serve the Transmoto Mobile Application. I
 
 The Transmoto Posts API can be used to get posts from the website. You can get all posts, get them by category, get popular posts or search posts.
 
-**Note:** Posts will only be returned 16 items at a time. Use the `page` attribute to get the next batch of posts. Use the `posts_per_page` attribute to change the number of posts returned.
+**Note:** Posts will only be returned 16 items at a time. Use the `page` attribute to get the next batch of posts. Use the `filter[posts_per_page]` attribute to change the number of posts returned.
 
 ## Retrive All Posts [/posts/?filter[category__not_in][]=103&filter[category__not_in][]=104&filter[category__not_in][]=105&filter[category__not_in][]=106&filter[posts_per_page]={posts_per_page}&page={page}&filter[s]={search}]
 
