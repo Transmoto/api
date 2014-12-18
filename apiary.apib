@@ -357,6 +357,14 @@ Get a list of available premium content categories. Categories are not nested so
 
 **This is a PUBLIC endpoint.**
 
+Response key description:
+
+* *term_id*: the category ID (used in `/premium/cat/{id}` endpoint)
+* *name*: the category name
+* *description*: the category description
+* *count*: the number of articles published in the category
+* *featured_image*: the URL to the category featured image (string), the image width (integer), the image height (integer), and whether it's the full-sized image, or resized version (boolean).
+
 ### Get Categories [GET]
 
 + Response 200 (application/json)
