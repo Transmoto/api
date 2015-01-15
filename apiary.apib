@@ -274,6 +274,8 @@ Pull ad details which matches the the ID passed.
 
 Return Trader ads that match the search criteria.
 
+To a list of up-to-date valid search parameters see the `/trader/search/options` endpoint.
+
 See `/trader/` endpoint for a description of the response keys.
 
 ### Search Ads [GET]
@@ -329,6 +331,7 @@ See `/trader/` endpoint for a description of the response keys.
             + `BMW`
             + `Can-Am`
             + `Ducati`
+            + `Gas Gas`
             + `Harley Davidson`
             + `Honda`
             + `Husaberg`
@@ -337,6 +340,7 @@ See `/trader/` endpoint for a description of the response keys.
             + `KTM`
             + `Ossa`
             + `Polaris`
+            + `Sherco`
             + `Suzuki`
             + `TM`
             + `Triumph`
@@ -393,15 +397,15 @@ See `/trader/` endpoint for a description of the response keys.
         
         [{"code":"json_trader_disabled","message":"Sorry, the Transmoto Trader is currently offline."}]
 
-## Trader Regions [/trader/search/regions]
+## Trader Regions [/trader/search/options]
 
-Retreive the valid country and state values used in Trader Searches.
+Retreive valid search list options for the Trader. To be used when showing the Trader search form to the user.
 
 ### Get Regions [GET]
 
 + Response 200 (application/json)
         
-        [{"name":"Australia","states":["Australian Capital Territory","New South Wales","Northern Territory","Queensland","South Australia","Tasmania","Victoria","Western Australia"]},{"name":"New Zealand","states":["Auckland","Bay of Plenty","Canterbury","Gisborne","Hawkes Bay","Manawatu-Wanganui","Marlborough","Nelson","Northland","Otago","Southland","Taranaki","Tasman","Waikato","Wellington","West Coast"]},{"name":"USA","states":["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Carolina","North Dakota","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]}]
+        {"categories":{"2":"Accessories","1":"Bikes"},"listing_type":["Dealer","Private"],"bike_type":["Enduro\/Trail","Motocross","Dual\/Adventure","Mini\/Fun","Road"],"bike_make":["Aprilia","Beta","BMW","Can-Am","Ducati","Harley Davidson","Honda","Husaberg","Husqvarna","Kawasaki","KTM","Ossa","Polaris","Suzuki","TM","Triumph","Yamaha","Other"],"bike_registered":["No","Yes"],"accessories_condition":["Poor","Fair","Good","Excellent","Near New","Brand New"],"regions":[{"name":"Australia","states":["Australian Capital Territory","New South Wales","Northern Territory","Queensland","South Australia","Tasmania","Victoria","Western Australia"]},{"name":"New Zealand","states":["Auckland","Bay of Plenty","Canterbury","Gisborne","Hawkes Bay","Manawatu-Wanganui","Marlborough","Nelson","Northland","Otago","Southland","Taranaki","Tasman","Waikato","Wellington","West Coast"]},{"name":"USA","states":["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Carolina","North Dakota","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]}]}
 
 + Response 503 (application/json)
         
