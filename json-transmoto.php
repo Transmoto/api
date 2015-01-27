@@ -15,6 +15,9 @@ class TransmotoRESTAPI
 	{
 		$plugin = new self();
 
+		require_once(plugin_dir_path(__FILE__) . 'core/class-posts-abstract.php');
+
+		require_once(plugin_dir_path(__FILE__) . 'endpoints/class-posts.php');
 		require_once(plugin_dir_path(__FILE__) . 'endpoints/class-trader.php');
 		require_once(plugin_dir_path(__FILE__) . 'endpoints/class-premium.php');
 
@@ -23,6 +26,15 @@ class TransmotoRESTAPI
 
 	public function register_endpoints($routes)
 	{
+
+		/*
+		 * Extend standard posts route and run queries the basics don't get		 
+		 */
+		$tm = new \TransmotoAPI\TransmotoRESTAPI_Posts;
+
+		$routes['/tm/popular'] = array(
+			array( array( $tm, 'get_popular_posts'), \WP_JSON_Server::READABLE ),			
+		);
 
 		/*
 		 * Add Trader Routes 
@@ -49,8 +61,8 @@ class TransmotoRESTAPI
 			array( array( $trader, 'search_ads'), \WP_JSON_Server::READABLE ),			
 		);		
 
-		$routes['/trader/search/regions'] = array(
-			array( array( $trader, 'get_regions'), \WP_JSON_Server::READABLE ),			
+		$routes['/trader/search/options'] = array(
+			array( array( $trader, 'get_search_options'), \WP_JSON_Server::READABLE ),			
 		);			
 
 		/*

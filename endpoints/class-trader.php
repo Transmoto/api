@@ -137,17 +137,29 @@ class TransmotoRESTAPI_Trader
 	}
 
 	/**
-	 * /trader/search/regions endpoint
-	 * @return string A json data burst. Either the available regions, or a WP_Error
+	 * /trader/search/opetions endpoint
+	 * @return string A json data burst. Either the available search options, or a WP_Error
 	 */
-	public function get_regions()
+	public function get_search_options()
 	{
 		/* run error checking and process our standard inputs */
 		$valid = $this->do_standard_processing();	
 
 		$api = awpcp_regions_api();
 
-		$data = $this->get_regions_array();
+		$data = array();
+		
+		$data['categories'] = $this->get_trader_categories();
+		$data['listing_type'] = array('Dealer', 'Private');
+		
+		$data['bike_type'] = awpcp_get_extra_field(7)->field_options;
+		$data['bike_make'] = awpcp_get_extra_field(9)->field_options;
+		$data['bike_registered'] = awpcp_get_extra_field(8)->field_options;
+
+		$data['accessories_condition'] = awpcp_get_extra_field(14)->field_options;
+
+		$data['regions'] = $this->get_regions_array();
+
 
 		echo json_encode($data);
 		exit;
@@ -172,13 +184,251 @@ class TransmotoRESTAPI_Trader
 
 			foreach($states as $s)
 			{
-				$data[$key]['states'][] = $s->region_name;
+				$data[$key]['states'][] = $this->convert_to_state_abbreviation($s->region_name, $c->region_name);
 			}
 		}
 
 		return $data;		
 	}
 
+	/**
+	 * Convert our state names to 'short' state names
+	 * @param  String $state_name The state to be converted
+	 * @param  String $country    The country to do the lookup fromt
+	 * @return String             The short-name state
+	 */
+	private function convert_to_state_abbreviation($state_name, $country)
+	{
+		switch($country)
+		{
+			case 'Australia':
+			  	$australia_state_conversion = array(
+						'New South Wales'              => 'NSW',
+						'Queensland'                   => 'QLD',
+						'Victoria'                     => 'Vic',
+						'South Australia'              => 'SA',
+						'Northern Territory'           => 'NT', 
+						'Australian Capital Territory' => 'ACT', 
+						'Tasmania'                     => 'Tas', 
+						'Western Australia'            => 'WA',
+			  	);
+
+			  	return (isset($australia_state_conversion[$state_name])) ? $australia_state_conversion[$state_name] : $state_name;
+			break;
+
+			case 'USA':
+				return $this->convert_us_state_to_abbreviation($state_name);
+			break;
+
+			default:
+				return $state_name;
+			break;
+		}
+	}
+
+	/**
+	 * Coverts long USA state name to its short counterpart
+	 * @param  String $state_name The long state name to be converted
+	 * @return String             The shortened state name
+	 */
+	private function convert_us_state_to_abbreviation($state_name) {
+		switch ($state_name) {
+			case "Alabama":
+				return "AL";
+				break;
+			case "Alaska":
+				return "AK";
+				break;
+			case "Arizona":
+				return "AZ";
+				break;
+			case "Arkansas":
+				return "AR";
+				break;
+			case "California":
+				return "CA";
+				break;
+			case "Colorado":
+				return "CO";
+				break;
+			case "Connecticut":
+				return "CT";
+				break;
+			case "Delaware":
+				return "DE";
+				break;
+			case "Florida":
+				return "FL";
+				break;
+			case "Georgia":
+				return "GA";
+				break;
+			case "Hawaii":
+				return "HI";
+				break;
+			case "Idaho":
+				return "ID";
+				break;
+			case "Illinois":
+				return "IL";
+				break;
+			case "Indiana":
+				return "IN";
+				break;
+			case "Iowa":
+				return "IA";
+				break;
+			case "Kansas":
+				return "KS";
+				break;
+			case "Kentucky":
+				return "KY";
+				break;
+			case "Louisana":
+				return "LA";
+				break;
+			case "Maine":
+				return "ME";
+				break;
+			case "Maryland":
+				return "MD";
+				break;
+			case "Massachusetts":
+				return "MA";
+				break;
+			case "Michigan":
+				return "MI";
+				break;
+			case "Minnesota":
+				return "MN";
+				break;
+			case "Mississippi":
+				return "MS";
+				break;
+			case "Missouri":
+				return "MO";
+				break;
+			case "Montana":
+				return "MT";
+				break;
+			case "Nebraska":
+				return "NE";
+				break;
+			case "Nevada":
+				return "NV";
+				break;
+			case "New Hampshire":
+				return "NH";
+				break;
+			case "New Jersey":
+				return "NJ";
+				break;
+			case "New Mexico":
+				return "NM";
+				break;
+			case "New York":
+				return "NY";
+				break;
+			case "North Carolina":
+				return "NC";
+				break;
+			case "North Dakota":
+				return "ND";
+				break;
+			case "Ohio":
+				return "OH";
+				break;
+			case "Oklahoma":
+				return "OK";
+				break;
+			case "Oregon":
+				return "OR";
+				break;
+			case "Pennsylvania":
+				return "PA";
+				break;
+			case "Rhode Island":
+				return "RI";
+				break;
+			case "South Carolina":
+				return "SC";
+				break;
+			case "South Dakota":
+				return "SD";
+				break;
+			case "Tennessee":
+				return "TN";
+				break;
+			case "Texas":
+				return "TX";
+				break;
+			case "Utah":
+				return "UT";
+				break;
+			case "Vermont":
+				return "VT";
+				break;
+			case "Virginia":
+				return "VA";
+				break;
+			case "Washington":
+				return "WA";
+				break;
+			case "Washington D.C.":
+				return "DC";
+				break;
+			case "West Virginia":
+				return "WV";
+				break;
+			case "Wisconsin":
+				return "WI";
+				break;
+			case "Wyoming":
+				return "WY";
+				break;
+			case "Alberta":
+				return "AB";
+				break;
+			case "British Columbia":
+				return "BC";
+				break;
+			case "Manitoba":
+				return "MB";
+				break;
+			case "New Brunswick":
+				return "NB";
+				break;
+			case "Newfoundland & Labrador":
+				return "NL";
+				break;
+			case "Northwest Territories":
+				return "NT";
+				break;
+			case "Nova Scotia":
+				return "NS";
+				break;
+			case "Nunavut":
+				return "NU";
+				break;
+			case "Ontario":
+				return "ON";
+				break;
+			case "Prince Edward Island":
+				return "PE";
+				break;
+			case "Quebec":
+				return "QC";
+				break;
+			case "Saskatchewan":
+				return "SK";
+				break;
+			case "Yukon Territory":
+				return "YT";
+				break;
+			default:
+				return $state_name;
+		}
+	}	
 
 	/**
 	 * Build our SQL query based on the submitted arguments and return the cleaned ad results
@@ -305,7 +555,7 @@ class TransmotoRESTAPI_Trader
  			return new \WP_Error( 'json_invalid_trader_search', __( 'Invalid \'condition\'. Valid types include: ' . implode(', ', $condition->field_options) ), array( 'status' => 400 ) );
  		} 	
 
- 		if(empty($data['country'])&& isset($data['state']))  			
+ 		if(empty($data['country']) && isset($data['state']))  			
  		{
  			return new \WP_Error( 'json_invalid_trader_search', __( "The 'state' parameter cannot be passed without the 'country' parameter." ), array( 'status' => 400 ) );
  		}
