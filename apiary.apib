@@ -12,7 +12,7 @@ The Transmoto Posts API can be used to get posts from the website. You can get a
 
 ## Retrive All Posts [/posts/?filter[category__not_in][]=103&filter[category__not_in][]=104&filter[category__not_in][]=105&filter[category__not_in][]=106&filter[posts_per_page]={posts_per_page}&page={page}&filter[s]={search}]
 
-Get all current posts on Transmoto. 
+Get all current posts on Transmoto. By default we are excluding a number of categories so you need to include the `?filter[category__not_in][]=103&filter[category__not_in][]=104&filter[category__not_in][]=105&filter[category__not_in][]=106` filters by default. If you want to filter by a specific category `?filter[cat]=123` you don't need to include the excluded category filters. 
 
 **Response key description:**
 
