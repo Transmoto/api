@@ -21,7 +21,10 @@ abstract class TransmotoPosts
 			'featured_image',
 			'excerpt',
 			'free',
+			'itunes_sku',
 			'hits',
+			'terms',
+			'meta',
 		);
 
 		$cleaned_post = array();
@@ -104,7 +107,7 @@ abstract class TransmotoPosts
 	 * @param  array $post The standard $post data 
 	 * @return array       The extended $post data
 	 */
-	protected function prepare_post($post)
+	protected function prepare_post($post, $premium = true)
 	{	
 		// Holds the data for this post.
 		$_post = array( 'ID' => (int) $post['ID'] );
@@ -196,10 +199,15 @@ abstract class TransmotoPosts
 		if ( ! empty( $post['post_parent'] ) ) {
 			$_post['meta']['links']['up'] = json_url( '/posts/' . (int) $post['post_parent'] );
 		}		
+		
+		if($premium) {
+			/* include whether the post is a freebee, or locked down */
+			$free          = get_post_meta( (int) $post['ID'], 'freebie', true);		
+			$_post['free'] = ($free == 1) ? true : false;		
 
-		/* include whether the post is a freebee, or locked down */
-		$free          = get_post_meta( (int) $post['ID'], 'freebie', true);		
-		$_post['free'] = ($free == 1) ? true : false;		
+			/* include the iTunes SKU */
+			$_post['itunes_sku'] = get_post_meta( (int) $post['ID'], 'itunes_sku', true);
+		}
 
 		/*
 		 * Include post hit counter 
@@ -231,5 +239,50 @@ abstract class TransmotoPosts
 		}
 
 		return $excerpt;
+	}
+
+	protected function set_post_details($response, $posts_list, $post_query)
+	{
+		/*
+		 * Set up our JSON return headers 
+		 */
+		$response->query_navigation_headers( $post_query );
+
+		/*
+		 * If posts empty, return early.
+		 */
+		if ( ! $posts_list ) {
+			$response->set_data( array() );
+		}	
+
+		return $response;	
+	}
+
+	protected function prepare_post_response($response, $posts_list, $premium = true)
+	{
+		/* holds all the posts data */
+		$struct = array();
+
+		/* Add to response header */
+		$response->header( 'Last-Modified', mysql2date( 'D, d M Y H:i:s', get_lastpostmodified( 'GMT' ), 0 ).' GMT' );
+
+		/* Loop through posts and return post object */
+		foreach ( $posts_list as $post ) {
+			$post = get_object_vars( $post );
+
+			/* process post data */
+			$post_data = $this->prepare_post( $post, $premium );
+			if ( is_wp_error( $post_data ) ) {
+				continue;
+			}
+
+			/* assign cleaned post data to the returning data array */
+			$struct[] = $this->clean($post_data);
+		}
+
+		/* set and return the array */
+		$response->set_data( $struct );		
+
+		return $response;		
 	}
 }

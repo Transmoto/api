@@ -780,7 +780,57 @@ class TransmotoRESTAPI_Trader
 	private function get_enabled_ads($args=array(), $conditions=array()) {
         $conditions = \AWPCP_Ad::get_where_conditions($conditions);
 
-        return \AWPCP_Ad::query(array_merge($args, array('where' => join(' AND ', $conditions))), 'raw');
+        $ads = \AWPCP_Ad::query(array_merge($args, array('where' => join(' AND ', $conditions))), 'raw');
+
+        /*
+         * Get ad images
+         */
+        foreach($ads as &$ad)
+        {
+        	$ad->images = $this->get_enabled_ad_images($ad);
+        }
+
+        return $ads;
+	}
+
+	private function get_enabled_ad_images($ad)
+	{
+		$results = awpcp_media_api()->find_public_images_by_ad_id( $ad->ad_id );
+        $images = array_reverse($results);		
+
+        return $this->process_ad_image_data($images);
+	}
+
+	private function process_ad_image_data($images)
+	{
+			$cleaned_images = array();
+
+            foreach ($images as $image) {
+				$orig_img   = $image->get_url( 'original' );
+				$medium_img = $image->get_url( 'large' );
+				$small_img  = $image->get_url();
+
+                /*
+                 * Created a cleaned images hash
+                 */
+                if(strlen($orig_img) > 0)
+                {
+	                $cleaned_images[] = array(
+	                	'url' => array(
+							'large'  => $orig_img ,
+							'medium' => $medium_img,
+							'thumb'  => $small_img,				
+	                	),
+	                	'attrs' => array(
+							'large'  => getimagesize($orig_img),
+							'medium' => getimagesize($medium_img),
+							'thumb'  => getimagesize($small_img),
+	                	)
+	                );
+	            }
+            }		
+
+            return $cleaned_images;
 	}
 
 	/**
@@ -812,7 +862,8 @@ class TransmotoRESTAPI_Trader
             'condition',
             'poa', 	
             'country',
-            'state'	    
+            'state',
+            'images',    
 		);
 
 		$cleaned_ads = array();

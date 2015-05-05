@@ -11,6 +11,8 @@ namespace TransmotoAPI;
 
 class TransmotoRESTAPI
 {
+	static $exclude_categories = array(103,104,105,106);
+
 	public static function init()
 	{
 		$plugin = new self();
@@ -21,7 +23,7 @@ class TransmotoRESTAPI
 		require_once(plugin_dir_path(__FILE__) . 'endpoints/class-trader.php');
 		require_once(plugin_dir_path(__FILE__) . 'endpoints/class-premium.php');
 
-		add_action( 'json_endpoints', array($plugin, 'register_endpoints') );
+		add_action( 'json_endpoints', array($plugin, 'register_endpoints') );		
 	}
 
 	public function register_endpoints($routes)
@@ -35,6 +37,20 @@ class TransmotoRESTAPI
 		$routes['/tm/popular'] = array(
 			array( array( $tm, 'get_popular_posts'), \WP_JSON_Server::READABLE ),			
 		);
+
+		$routes['/tm/rotator'] = array(
+			array( array( $tm, 'get_rotator_posts'), \WP_JSON_Server::READABLE ),			
+		);
+
+		/*
+		 * Extend the /posts/:id/ endpoint with one for related content 
+		 */
+		$routes['/posts/(?P<id>\d+)/related'] = array(
+				array( array( $tm, 'get_related' ), \WP_JSON_Server::READABLE ),
+		);
+
+		add_action( 'json_prepare_post', array($tm, 'add_meta_data'), 10, 3);		
+
 
 		/*
 		 * Add Trader Routes 
@@ -70,6 +86,10 @@ class TransmotoRESTAPI
 		 */	
 		$premium = new \TransmotoAPI\TransmotoRESTAPI_Premium;
 
+		$routes['/premium'] = array(
+			array( array( $premium, 'get_purchases'), \WP_JSON_Server::READABLE ),		
+		);
+
 		$routes['/premium/cat'] = array(
 			array( array( $premium, 'get_categories'), \WP_JSON_Server::READABLE ),		
 		);
@@ -78,9 +98,13 @@ class TransmotoRESTAPI
 			array( array( $premium, 'get_category_posts'), \WP_JSON_Server::READABLE ),		
 		);		
 
-		$routes['/premium/(?P<id>\d+)'] = array(
-			array( array( $premium, 'get_post'), \WP_JSON_Server::READABLE ),		
-		);					
+		$routes['/premium/cat/(?P<id>\d+)/popular'] = array(
+			array( array( $premium, 'get_popular_category_posts'), \WP_JSON_Server::READABLE ),		
+		);		
+
+		$routes['/premium/(?P<itunes_id>[\w-]+)'] = array(
+			array( array( $premium, 'get_post'), \WP_JSON_Server::READABLE | \WP_JSON_SERVER::CREATABLE | \WP_JSON_Server::ACCEPT_JSON ),		
+		);		
 
 
 		return $routes;
