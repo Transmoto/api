@@ -508,11 +508,18 @@ class TransmotoRESTAPI_Premium extends TransmotoPosts
 		}
 
 		$posts_per_page = (isset($filter['posts_per_page'])) ? (int) $filter['posts_per_page'] : 16;
+		$search         = (isset($filter['s'])) ? wp_kses($filter['s'], array()) : false;
 		
-		return array(
+		$keys = array(
 			'offset' => $posts_per_page * ($page - 1),
-			'posts_per_page' => $posts_per_page,
-		);		
+			'limit'  => $posts_per_page,
+		);				
+
+		if($search !== false) {
+			$keys['s'] = $search;
+		}
+
+		return $keys;	
 	}	
 
 	/**
