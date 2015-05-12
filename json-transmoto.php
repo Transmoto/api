@@ -61,6 +61,10 @@ class TransmotoRESTAPI
 			array( array( $trader, 'get_all_ads'), \WP_JSON_Server::READABLE ),			
 		);
 
+		$routes['/trader/random'] = array(
+			array( array( $trader, 'get_random_ads'), \WP_JSON_Server::READABLE ),			
+		);		
+
 		$routes['/trader/dealer'] = array(
 			array( array( $trader, 'get_dealer_ads'), \WP_JSON_Server::READABLE ),			
 		);		

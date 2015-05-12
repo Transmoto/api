@@ -32,6 +32,31 @@ class TransmotoRESTAPI_Trader
 	}
 
 	/**
+	 * /trader/random/ endpoint for getting all ads 	 
+	 * @param  array   $filter  Additional option parameters can be passed through. Currently supporting ?filter['ads_per_page']
+	 * @param  string  $context N/A
+	 * @param  string  $type    N/A
+	 * @param  integer $page    The page ID. Used in pagination
+	 * @return string           A json data burst. Either all the ads, or a WP_Error
+	 */
+	public function get_random_ads($filter = array(), $context = 'view', $type = 'trader', $page = 1)
+	{
+		/* run error checking and process our standard inputs */
+		$args = $this->do_bulk_standard_processing($filter, $page);
+
+		if(is_wp_error($args))
+		{
+			return $args;
+		}
+
+		/* get our ads */
+		$ads = $this->clean_ads($this->get_enabled_ads($args, array(), array('RAND()')));
+
+		print json_encode($ads);
+		exit;
+	}	
+
+	/**
 	 * /trader/private/ endpoint for only getting ads that are from private sellers
 	 * @param  array   $filter  The available GET url parameters
 	 * @param  string  $context N/A
@@ -775,12 +800,17 @@ class TransmotoRESTAPI_Trader
 	 * Get all enabled ads back in RAW format
 	 * @param  array  $args       Any arguments that should be applies
 	 * @param  array  $conditions Any conditions
+	 * @param  array  $order The order the results should be in
 	 * @return array             The ads data array
 	 */
-	private function get_enabled_ads($args=array(), $conditions=array()) {
+	private function get_enabled_ads($args=array(), $conditions=array(), $order=array()) {
         $conditions = \AWPCP_Ad::get_where_conditions($conditions);
 
-        $ads = \AWPCP_Ad::query(array_merge($args, array('where' => join(' AND ', $conditions))), 'raw');
+        $ads = \AWPCP_Ad::query(array_merge(
+        	$args, array(
+        		'where' => join(' AND ', $conditions),
+        		'order' => array_merge(array('CASE WHEN media_count = 0 THEN 1 ELSE 0 END ASC'), $order, array('ad_startdate DESC')),
+        )), 'raw');
 
         /*
          * Get ad images
@@ -850,6 +880,7 @@ class TransmotoRESTAPI_Trader
 		    'ad_contact_email',
 		    'ad_postdate',
 		    'ad_last_updated',
+		    'ad_url',
 		    'listing_type',
 		    'is_featured_ad',
             'bike_type', 
@@ -871,7 +902,7 @@ class TransmotoRESTAPI_Trader
 		foreach($ads as $key => $ad)
 		{
 			$ad->country = bld_awpcp_location_display($ad, 'tm_country');
-			$ad->state   = bld_awpcp_location_display($ad, 'tm_state_display');
+			$ad->state   = bld_awpcp_location_display($ad, 'tm_state_display');			
 
 			foreach($valid_ids as $id)
 			{
@@ -891,6 +922,7 @@ class TransmotoRESTAPI_Trader
 			}
 
 			$cleaned_ads[$key]['category_name'] = get_adparentcatname($ad->ad_category_id);
+			$cleaned_ads[$key]['ad_url']        = url_showad($ad->ad_id);
 		}
 
 		return $cleaned_ads;
